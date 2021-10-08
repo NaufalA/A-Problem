@@ -29,4 +29,9 @@ public class CircleController : MonoBehaviour
     {
         _rigidbody2D.velocity = Vector2.ClampMagnitude(new Vector2(x * initialForce, y * initialForce), maxSpeed);
     }
+
+    public void Move(Vector2 target)
+    {
+        transform.position = Vector2.MoveTowards(transform.position, target, maxSpeed * Time.deltaTime);
+    }
 }

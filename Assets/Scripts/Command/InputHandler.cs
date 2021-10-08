@@ -6,7 +6,8 @@ namespace Command
 {
     public enum InputType
     {
-        Keyboard
+        Keyboard,
+        Cursor
     }
     
     public class InputHandler: MonoBehaviour
@@ -20,21 +21,38 @@ namespace Command
         {
             if (inputType == InputType.Keyboard)
             {
-                Command moveCommand = HandleKeyboardInput();
+                Command moveCommand = HandleKeyboardMovement();
                 if (moveCommand != null)
                 {
                     commands.Enqueue(moveCommand);
                     moveCommand.Execute();
                 }
             }
+            else if (inputType == InputType.Cursor)
+            {
+                Command moveCommand = HandleCursorMovement();
+                if (moveCommand != null)
+                {
+                    commands.Enqueue(moveCommand);
+                    moveCommand.Execute();
+                }
+            }
+
         }
 
-        private Command HandleKeyboardInput()
+        private Command HandleKeyboardMovement()
         {
             float inputX = Input.GetAxis("Horizontal");
             float inputY = Input.GetAxis("Vertical");
             
             return new KeyboardMove(circleController, inputX, inputY);
+        }
+
+        private Command HandleCursorMovement()
+        {
+            Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            return new CursorMove(circleController, cursorPos);
         }
             
     }
