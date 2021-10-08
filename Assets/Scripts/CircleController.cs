@@ -15,14 +15,6 @@ public class CircleController : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
-    {
-        float inputX = Input.GetAxis("Horizontal");
-        float inputY = Input.GetAxis("Vertical");
-        
-        Move(inputX, inputY);
-    }
-
     private void Move()
     {
         float random = Random.Range(-initialForce, initialForce);
@@ -33,7 +25,7 @@ public class CircleController : MonoBehaviour
                 : Vector2.ClampMagnitude(new Vector2(initialForce, random), maxSpeed), ForceMode2D.Impulse);
     }
 
-    private void Move(float x, float y)
+    public void Move(float x, float y)
     {
         _rigidbody2D.velocity = Vector2.ClampMagnitude(new Vector2(x * initialForce, y * initialForce), maxSpeed);
     }
