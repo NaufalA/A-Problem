@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06bb65d77fb0aff0b808541205ec0542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 7.5
 --- !u!114 &1854631116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,7 +568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleController: {fileID: 1854631115}
-  inputType: 0
+  inputType: 1
 --- !u!1 &1881890556
 GameObject:
   m_ObjectHideFlags: 0

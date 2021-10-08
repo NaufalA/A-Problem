@@ -1,37 +1,43 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Command;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CircleController : MonoBehaviour
 {
-    public float maxSpeed = 10.0f;
-    public float initialForce = 5.0f;
+    public float speed = 7.5f;
 
     private Rigidbody2D _rigidbody2D;
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+
+        InputHandler inputHandler = GetComponent<InputHandler>();
+        if (inputHandler is null || !inputHandler.enabled)
+        {
+            Move();
+        }
     }
 
     private void Move()
     {
-        float random = Random.Range(-initialForce, initialForce);
+        float random = Random.Range(-1, 1);
 
         _rigidbody2D.AddForce(
-            Random.Range(-1, 1) < 0
-                ? Vector2.ClampMagnitude(new Vector2(-initialForce, random), maxSpeed)
-                : Vector2.ClampMagnitude(new Vector2(initialForce, random), maxSpeed), ForceMode2D.Impulse);
+            random < 0
+                ? Vector2.ClampMagnitude(new Vector2(-speed, random * speed), speed)
+                : Vector2.ClampMagnitude(new Vector2(speed, random * speed), speed));
     }
 
     public void Move(float x, float y)
     {
-        _rigidbody2D.velocity = Vector2.ClampMagnitude(new Vector2(x * initialForce, y * initialForce), maxSpeed);
+        _rigidbody2D.velocity = new Vector2(x * speed, y * speed);
     }
 
     public void Move(Vector2 target)
     {
-        transform.position = Vector2.MoveTowards(transform.position, target, maxSpeed * Time.deltaTime);
+        _rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime)); 
     }
 }
