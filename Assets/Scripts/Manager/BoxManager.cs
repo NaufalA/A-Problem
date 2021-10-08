@@ -11,10 +11,15 @@ namespace Manager
         private int _maxBoxes;
         
         public Transform circle;
-        public GameObject boxPrefab;
+        public BoxController boxPrefab;
         public bool interactable = true;
         public float minDistance = 2.0f;
         public Transform[] walls;
+
+        public bool respawnEnabled = true;
+        public float respawnCooldown = 3.0f;
+        private float _respawnTimer;
+        private int _activeBoxes = 0;
 
         private void Start()
         {
@@ -22,9 +27,20 @@ namespace Manager
 
             _maxBoxes = Mathf.FloorToInt(Random.Range(1, 20));
 
-            for (int i = 0; i < _maxBoxes; i++)
+            while (_activeBoxes < _maxBoxes)
             {
                 SpawnBox();
+            }
+        }
+
+        private void Update()
+        {
+            _respawnTimer += Time.deltaTime;
+
+            if (respawnEnabled && _activeBoxes < _maxBoxes && _respawnTimer >= respawnCooldown)
+            {
+                SpawnBox();
+                _respawnTimer = 0.0f;
             }
         }
 
@@ -36,7 +52,10 @@ namespace Manager
                 randomPos = RandomizePosition();
             } while (Vector2.Distance(randomPos, circle.position) < minDistance);
 
-            _boxFactory.Produce(boxPrefab, randomPos, transform, interactable);
+            GameObject newBox = _boxFactory.Produce(boxPrefab.gameObject, randomPos, transform, interactable);
+            newBox.GetComponent<BoxController>().OnBoxDisabled += PrepareRespawn;
+            
+            _activeBoxes += 1;
         }
 
         private Vector2 RandomizePosition()
@@ -45,6 +64,15 @@ namespace Manager
             float yPos = Random.Range(walls[2].position.y+1, walls[3].position.y-1);
 
             return new Vector2(xPos, yPos);
+        }
+
+        private void PrepareRespawn()
+        {
+            _activeBoxes -= 1;
+            if (_respawnTimer >= respawnCooldown)
+            {
+                _respawnTimer = 0.0f;
+            }
         }
     }
 }
