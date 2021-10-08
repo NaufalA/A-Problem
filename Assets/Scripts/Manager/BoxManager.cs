@@ -12,6 +12,7 @@ namespace Manager
         
         public Transform circle;
         public GameObject boxPrefab;
+        public bool interactable = true;
         public float minDistance = 2.0f;
         public Transform[] walls;
 
@@ -35,13 +36,13 @@ namespace Manager
                 randomPos = RandomizePosition();
             } while (Vector2.Distance(randomPos, circle.position) < minDistance);
 
-            _boxFactory.Produce(boxPrefab, randomPos, transform);
+            _boxFactory.Produce(boxPrefab, randomPos, transform, interactable);
         }
 
         private Vector2 RandomizePosition()
         {
-            float xPos = Random.Range(walls[0].position.x, walls[1].position.x);
-            float yPos = Random.Range(walls[2].position.y, walls[3].position.y);
+            float xPos = Random.Range(walls[0].position.x+1, walls[1].position.x-1);
+            float yPos = Random.Range(walls[2].position.y+1, walls[3].position.y-1);
 
             return new Vector2(xPos, yPos);
         }
