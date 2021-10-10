@@ -9,6 +9,7 @@ namespace Manager
     {
         private BoxFactory _boxFactory;
         private int _maxBoxes;
+        private ObjectPool _boxPool = new ObjectPool();
         
         public Transform circle;
         public BoxController boxPrefab;
@@ -46,13 +47,23 @@ namespace Manager
 
         private void SpawnBox()
         {
+
+            var newBox = _boxPool.CheckPool();
+            if (newBox == null)
+            {
+                newBox = _boxFactory.Produce(boxPrefab.gameObject, transform, interactable);
+                _boxPool.AddToPool(newBox);
+            }
+            
             Vector2 randomPos;
             do
             {
                 randomPos = RandomizePosition();
             } while (Vector2.Distance(randomPos, circle.position) < minDistance);
-
-            GameObject newBox = _boxFactory.Produce(boxPrefab.gameObject, randomPos, transform, interactable);
+            
+            newBox.transform.position = randomPos;
+            newBox.SetActive(true);
+            
             newBox.GetComponent<BoxController>().OnBoxDisabled += PrepareRespawn;
             
             _activeBoxes += 1;
