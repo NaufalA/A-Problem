@@ -633,6 +633,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1331656913}
+  boxProgressCheckpoint: 5
+  boxProgressIncrement: 1
 --- !u!4 &1343744650
 Transform:
   m_ObjectHideFlags: 0
@@ -677,17 +679,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71798fd8c1d24166a78f3d83729792f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circle: {fileID: 1854631112}
   boxPrefab: {fileID: 7196674620024324339, guid: f417cc9d9f74e326ba6d43869b146009,
     type: 3}
-  interactable: 1
   minDistance: 2
+  interactable: 1
   walls:
   - {fileID: 140452636}
   - {fileID: 292540421}
   - {fileID: 246187853}
   - {fileID: 392834009}
   respawnEnabled: 1
+  progressEnabled: 0
   respawnCooldown: 3
 --- !u!114 &1699861181
 MonoBehaviour:
