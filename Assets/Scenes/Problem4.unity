@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 1854631114}
   - component: {fileID: 1854631113}
   - component: {fileID: 1854631115}
+  - component: {fileID: 1854631117}
   - component: {fileID: 1854631116}
   m_Layer: 0
   m_Name: Circle
@@ -554,8 +555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06bb65d77fb0aff0b808541205ec0542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
-  initialForce: 5
+  circleMovement: {fileID: 1854631117}
 --- !u!114 &1854631116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,8 +568,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f0784b4ae429601b3eb82f1618d6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleController: {fileID: 1854631115}
+  playerCircleController: {fileID: 0}
   inputType: 0
+--- !u!114 &1854631117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854631110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1aef62e40ad44b0b62e21968dea1070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 7.5
 --- !u!1 &1881890556
 GameObject:
   m_ObjectHideFlags: 0

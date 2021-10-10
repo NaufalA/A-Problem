@@ -12,10 +12,15 @@ namespace Command
     
     public class InputHandler: MonoBehaviour
     {
-        public CircleController circleController;
+        public PlayerCircleController playerCircleController;
         public InputType inputType;
         
         private Queue<Command> commands = new Queue<Command>();
+
+        private void Start()
+        {
+            playerCircleController = GetComponent<PlayerCircleController>();
+        }
 
         private void FixedUpdate()
         {
@@ -45,14 +50,14 @@ namespace Command
             float inputX = Input.GetAxis("Horizontal");
             float inputY = Input.GetAxis("Vertical");
             
-            return new KeyboardMove(circleController, inputX, inputY);
+            return new KeyboardMove(playerCircleController, inputX, inputY);
         }
 
         private Command HandleCursorMovement()
         {
             Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            return new CursorMove(circleController, cursorPos);
+            return new CursorMove(playerCircleController, cursorPos);
         }
             
     }

@@ -5,7 +5,7 @@ using Command;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CircleController : MonoBehaviour
+public class CircleMovement : MonoBehaviour
 {
     public float speed = 7.5f;
 
@@ -13,15 +13,9 @@ public class CircleController : MonoBehaviour
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-
-        InputHandler inputHandler = GetComponent<InputHandler>();
-        if (inputHandler is null || !inputHandler.enabled)
-        {
-            Move();
-        }
     }
 
-    private void Move()
+    public void Move()
     {
         float random = Random.Range(-1, 1);
 
