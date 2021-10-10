@@ -17,12 +17,18 @@ public class CircleMovement : MonoBehaviour
 
     public void Move()
     {
-        float random = Random.Range(-1, 1);
+        const float initialForce = 5.0f;
+        
+        float random = Random.Range(-initialForce, initialForce);
 
-        _rigidbody2D.AddForce(
-            random < 0
-                ? Vector2.ClampMagnitude(new Vector2(-speed, random * speed), speed)
-                : Vector2.ClampMagnitude(new Vector2(speed, random * speed), speed));
+        if (Random.Range(-1, 1) < 0)
+        {
+            _rigidbody2D.velocity = Vector2.ClampMagnitude(new Vector2(-initialForce, random), speed);
+        }
+        else
+        {
+            _rigidbody2D.velocity = Vector2.ClampMagnitude(new Vector2(initialForce, random), speed);
+        }
     }
 
     public void Move(float x, float y)
