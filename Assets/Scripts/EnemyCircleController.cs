@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Manager;
 using UnityEngine;
 
 public class EnemyCircleController : MonoBehaviour
@@ -31,5 +32,13 @@ public class EnemyCircleController : MonoBehaviour
         }
         
         circleMovement.Move(_targetPos);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 }

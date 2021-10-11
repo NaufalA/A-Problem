@@ -19,4 +19,10 @@ public class PlayerCircleController : MonoBehaviour
             circleMovement.Move();
         }
     }
+
+    private void OnDisable()
+    {
+        Debug.Log("ded");
+        // TODO: Implement Game over
+    }
 }
