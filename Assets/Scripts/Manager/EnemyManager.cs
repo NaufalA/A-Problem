@@ -90,6 +90,8 @@ namespace Manager
 
             newEnemy.transform.position = randomPos;
             newEnemy.SetActive(true);
+            
+            newEnemy.GetComponent<EnemyCircleController>().OnDisabled += PrepareRespawn;
 
             _activeEnemies += 1;
         }

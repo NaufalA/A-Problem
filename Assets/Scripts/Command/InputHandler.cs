@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Command
@@ -43,6 +42,12 @@ namespace Command
                 }
             }
 
+            if (Input.GetButton("Fire1") || Input.GetKey(KeyCode.Space))
+            {
+                Command specialCommand = HandleSpecialMove();
+                commands.Enqueue(specialCommand);
+                specialCommand.Execute();
+            }
         }
 
         private Command HandleKeyboardMovement()
@@ -59,6 +64,10 @@ namespace Command
 
             return new CursorMove(playerCircleController, cursorPos);
         }
-            
+
+        private Command HandleSpecialMove()
+        {
+            return new SpecialControl(playerCircleController);
+        }
     }
 }

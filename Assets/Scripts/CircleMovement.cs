@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Command;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class CircleMovement : MonoBehaviour
@@ -38,6 +34,16 @@ public class CircleMovement : MonoBehaviour
 
     public void Move(Vector2 target)
     {
+        LookAt(target);
         _rigidbody2D.MovePosition(Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime)); 
+    }
+
+    private void LookAt(Vector2 target)
+    {
+        Vector3 direction = target - (Vector2) transform.position;
+        
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, targetAngle - 90f));
     }
 }

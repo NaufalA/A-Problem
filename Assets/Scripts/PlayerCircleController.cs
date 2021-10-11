@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Command;
+﻿using Command;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class PlayerCircleController : MonoBehaviour
 {
     public CircleMovement circleMovement;
+    public ZoomMovement zoomMovement;
 
     private void Start()
     {
         circleMovement = GetComponent<CircleMovement>();
+        zoomMovement = GetComponent<ZoomMovement>();
         
         InputHandler inputHandler = GetComponent<InputHandler>();
         if (inputHandler is null || !inputHandler.enabled)

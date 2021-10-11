@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Manager;
+﻿using Manager;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyCircleController : MonoBehaviour
 {
@@ -12,6 +10,8 @@ public class EnemyCircleController : MonoBehaviour
     private Vector2 _targetPos;
     private float _trackingCooldown = 0.3f;
     private float _trackingTimer;
+    
+    public UnityAction OnDisabled = delegate {  };
 
     private void Start()
     {
@@ -38,7 +38,18 @@ public class EnemyCircleController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.SetActive(false);
+            var playerController = other.gameObject.GetComponent<PlayerCircleController>();
+            if (playerController.zoomMovement.zoomActive)
+            {
+                ScoreManager.Instance.AddScore(2);
+                gameObject.SetActive(false);
+                OnDisabled();
+                OnDisabled = delegate {  };
+            }
+            else
+            {
+                other.gameObject.SetActive(false);
+            }
         }
     }
 }
