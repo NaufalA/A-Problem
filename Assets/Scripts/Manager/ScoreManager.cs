@@ -30,6 +30,8 @@ namespace Manager
         public Text scoreText;
         public EnemyManager enemyManager;
 
+        public bool enemyEnabled = false;
+
         public int boxProgressCheckpoint = 5;
         public int boxProgressIncrement = 1;
         public int enemyProgressCheckpoint = 15;
@@ -40,8 +42,11 @@ namespace Manager
         private void Start()
         {
             _currentScore = 0;
-            
-            enemyManager = EnemyManager.Instance;
+
+            if (enemyEnabled)
+            {
+                enemyManager = EnemyManager.Instance;
+            }
         }
 
         public void AddScore(int amount)
@@ -59,7 +64,7 @@ namespace Manager
                 BoxManager.Instance.IncreaseMax(boxProgressIncrement);
             }
 
-            if (enemyManager == null)
+            if (!enemyEnabled)
             {
                 return;
             }

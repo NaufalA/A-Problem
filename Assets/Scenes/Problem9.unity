@@ -491,11 +491,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4176822107175939298, guid: 77b712d8995e63ca8b7ba23aa45020d8,
     type: 3}
   minDistance: 5
-  walls:
-  - {fileID: 140452636}
-  - {fileID: 292540421}
-  - {fileID: 246187853}
-  - {fileID: 392834009}
+  wallContainer: {fileID: 1881890556}
+  walls: []
   maxEnemies: 1
   respawnCooldown: 5
 --- !u!114 &939166167
@@ -700,6 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1331656913}
   enemyManager: {fileID: 0}
+  enemyEnabled: 1
   boxProgressCheckpoint: 5
   boxProgressIncrement: 1
   enemyProgressCheckpoint: 15
@@ -752,11 +750,8 @@ MonoBehaviour:
     type: 3}
   minDistance: 2
   interactable: 1
-  walls:
-  - {fileID: 140452636}
-  - {fileID: 292540421}
-  - {fileID: 246187853}
-  - {fileID: 392834009}
+  wallContainer: {fileID: 1881890556}
+  walls: []
   respawnEnabled: 1
   progressEnabled: 1
   respawnCooldown: 1
@@ -1029,10 +1024,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Factory;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Manager
 
                     if (_instance == null)
                     {
-                        Debug.LogError("ScoreManager not found!");
+                        Debug.LogError("EnemyManager not found!");
                     }
                 }
 
@@ -37,7 +38,8 @@ namespace Manager
         [Header("Spawn Settings")] 
         public EnemyCircleController enemyPrefab;
         public float minDistance = 5.0f;
-        public Transform[] walls;
+        public GameObject wallContainer;
+        public List<Transform> walls = new List<Transform>();
 
         [Header("Respawn Settings")] 
         public int maxEnemies = 0;
@@ -47,6 +49,9 @@ namespace Manager
 
         private void Start()
         {
+            walls.AddRange(wallContainer.GetComponentsInChildren<Transform>());
+            walls.RemoveAt(0);
+            
             _circle = GameObject.FindGameObjectWithTag("Player").transform;
             _enemyFactory = GetComponent<EnemyFactory>();
         }

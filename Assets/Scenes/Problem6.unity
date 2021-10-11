@@ -456,11 +456,8 @@ MonoBehaviour:
     type: 3}
   minDistance: 2
   interactable: 0
-  walls:
-  - {fileID: 140452636}
-  - {fileID: 292540421}
-  - {fileID: 246187853}
-  - {fileID: 392834009}
+  wallContainer: {fileID: 1881890556}
+  walls: []
   respawnEnabled: 0
   progressEnabled: 0
   respawnCooldown: 3
@@ -488,7 +485,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1854631110
 GameObject:
@@ -683,5 +680,5 @@ Transform:
   - {fileID: 292540421}
   - {fileID: 140452636}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

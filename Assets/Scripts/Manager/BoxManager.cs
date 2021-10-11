@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Factory;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -37,7 +38,8 @@ namespace Manager
         public BoxController boxPrefab;
         public float minDistance = 2.0f;
         public bool interactable = true;
-        public Transform[] walls;
+        public GameObject wallContainer;
+        public List<Transform> walls = new List<Transform>();
 
         [Header("Respawn Settings")]
         public bool respawnEnabled = true;
@@ -50,6 +52,8 @@ namespace Manager
         {
             _circle = GameObject.FindGameObjectWithTag("Player").transform;
             _boxFactory = GetComponent<BoxFactory>();
+            walls.AddRange(wallContainer.GetComponentsInChildren<Transform>());
+            walls.RemoveAt(0);
 
             if (!progressEnabled)
             {
