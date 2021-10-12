@@ -26,7 +26,7 @@ namespace UI
         
             buttonResume.onClick.AddListener(gameFlowManager.ResumeGame);
             buttonRestart.onClick.AddListener(gameFlowManager.RestartGame);
-            buttonExit.onClick.AddListener(gameFlowManager.ExitGame);
+            buttonExit.onClick.AddListener(gameFlowManager.BackToMenu);
         }
 
         private void OnEnable()

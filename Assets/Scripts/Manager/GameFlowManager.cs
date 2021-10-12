@@ -68,7 +68,6 @@ namespace Manager
 
         public void PauseGame()
         {
-            Debug.Log("pause");
             _gamePaused = true;
             Time.timeScale = 0f;
             
@@ -84,7 +83,6 @@ namespace Manager
     
         private IEnumerator ResumeCountdown()
         {
-            Debug.Log("resume");
             pauseMenuUI.Hide();
             _player.SetActive(true);
             
@@ -95,7 +93,6 @@ namespace Manager
             while (pauseTimer > 0.0f)
             {
                 pauseTimer -= Time.unscaledDeltaTime;
-                Debug.Log(pauseTimer);
                 pauseMenuUI.UpdatePauseTimer(pauseTimer);
                 yield return null;
             }
@@ -112,14 +109,17 @@ namespace Manager
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     
-        public void ExitGame()
+        public void BackToMenu()
         {
-            Application.Quit();
+            Time.timeScale = 1f;
+            SceneManager.LoadScene(0);
         }
 
         public void GameOver()
         {
             _isGameOver = true;
+            FindObjectOfType<EnemyManager>().enabled = false;
+            FindObjectOfType<BoxManager>().enabled = false;
             if (ScoreManager.Instance.CurrentScore > ScoreManager.Instance.HighScore)
             {
                 ScoreManager.Instance.SetHighScore();
