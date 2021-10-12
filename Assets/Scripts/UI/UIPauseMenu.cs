@@ -9,6 +9,7 @@ namespace UI
         public GameFlowManager gameFlowManager;
 
         public GameObject gameplayPanel;
+        public Text pauseTimerText;
         public Text statusInfo;
         public Button buttonResume;
         public Button buttonRestart;
@@ -58,6 +59,16 @@ namespace UI
         public void Hide()
         {
             gameObject.SetActive(false);
+        }
+
+        public void TogglePauseTimer(bool isActive)
+        {
+            pauseTimerText.gameObject.SetActive(isActive);
+        }
+        
+        public void UpdatePauseTimer(float value)
+        {
+            pauseTimerText.text = value.ToString("0");
         }
     }
 }
