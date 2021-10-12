@@ -48,7 +48,7 @@ public class EnemyCircleController : MonoBehaviour
             }
             else
             {
-                other.gameObject.SetActive(false);
+                playerController.Die();
             }
         }
     }

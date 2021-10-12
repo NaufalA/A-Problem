@@ -38,6 +38,10 @@ namespace Manager
         public int enemyProgressIncrement = 1;
 
         private int _currentScore;
+        public int CurrentScore => _currentScore;
+        
+        private int _highScore;
+        public int HighScore => _highScore;
 
         private void Start()
         {
@@ -73,6 +77,11 @@ namespace Manager
             {
                 EnemyManager.Instance.IncreaseMax(enemyProgressIncrement);
             }
+        }
+
+        public void SetHighScore()
+        {
+            _highScore = _currentScore;
         }
     }
 }

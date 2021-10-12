@@ -1,4 +1,5 @@
 ﻿using Command;
+using Manager;
 using UnityEngine;
 
 public class PlayerCircleController : MonoBehaviour
@@ -18,9 +19,9 @@ public class PlayerCircleController : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    public void Die()
     {
-        Debug.Log("ded");
-        // TODO: Implement Game over
+        gameObject.SetActive(false);
+        GameFlowManager.Instance.GameOver();
     }
 }
